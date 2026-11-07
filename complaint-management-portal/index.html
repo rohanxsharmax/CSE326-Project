@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complaint Management Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <h1>Complaint Management Portal</h1>
+      <nav>
+        <a href="#submit">Submit Complaint</a>
+        <a href="#complaints">View Complaints</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <h2>Welcome</h2>
+      <p>Use this portal to register a complaint and track its progress.</p>
+    </section>
+
+    <section class="dashboard" aria-label="Complaint summary">
+      <div class="card"><span>Total Complaints</span><strong id="totalCount">0</strong></div>
+      <div class="card"><span>Open</span><strong id="openCount">0</strong></div>
+      <div class="card"><span>In Progress</span><strong id="progressCount">0</strong></div>
+      <div class="card"><span>Resolved</span><strong id="resolvedCount">0</strong></div>
+    </section>
+
+    <section id="submit" class="section-box">
+      <h2>Submit a Complaint</h2>
+      <form id="complaintForm">
+        <div class="form-grid">
+          <label>Full Name *
+            <input type="text" name="name" required />
+          </label>
+          <label>Email Address *
+            <input type="email" name="email" required />
+          </label>
+          <label>Category *
+            <select name="category" required>
+              <option value="">Select category</option>
+              <option>Service</option>
+              <option>Billing</option>
+              <option>Product</option>
+              <option>Technical Issue</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>Priority *
+            <select name="priority" required>
+              <option>Low</option>
+              <option selected>Medium</option>
+              <option>High</option>
+            </select>
+          </label>
+        </div>
+
+        <label>Subject *
+          <input type="text" name="subject" required />
+        </label>
+        <label>Description *
+          <textarea name="description" rows="5" required></textarea>
+        </label>
+        <label>Attachment (optional)
+          <input type="file" id="attachment" accept="image/*,.pdf,.doc,.docx" />
+        </label>
+        <button type="submit">Submit Complaint</button>
+        <p id="formMessage" class="message" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section id="complaints" class="section-box">
+      <h2>Track and Manage Complaints</h2>
+      <div class="track-area">
+        <input id="trackingInput" type="search" placeholder="Enter tracking ID, e.g. CMP-1001" />
+        <button id="trackButton" type="button">Track</button>
+      </div>
+      <p id="trackingResult" class="message" aria-live="polite"></p>
+
+      <div class="filters">
+        <input id="searchInput" type="search" placeholder="Search by subject, name, or ID" />
+        <select id="statusFilter" aria-label="Filter complaints by status">
+          <option value="All">All statuses</option>
+          <option value="Open">Open</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Resolved">Resolved</option>
+        </select>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Tracking ID</th>
+              <th>Complaint</th>
+              <th>Category</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Submitted</th>
+              <th>Update Status</th>
+            </tr>
+          </thead>
+          <tbody id="complaintsBody"></tbody>
+        </table>
+        <p id="emptyMessage" class="message" hidden>No complaints found.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>We try our best to resolve your problems.❤️</footer>
+  <script src="script.js"></script>
+</body>
+</html>
